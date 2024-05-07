@@ -1,0 +1,42 @@
+
+<div class="container main-view">
+    <div class="row">
+        
+        <div class="sub-view col">
+            <div class="col">
+                <label class="rounded border p-2">32423423</label>
+                <label class="rounded border p-2">Televentas</label>
+            </div>
+          
+        </div>
+      
+        <div class="col">
+        <div class="sub-view">
+          <form>
+            <div class="form-group"><textarea class="form-control" rows="4"></textarea></div>
+            
+            <div class="form-group"><textarea class="form-control" rows="4"></textarea></div>
+            
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{selected || 'Seleccionar'}}
+              </button>
+              <ul class="dropdown-menu">
+                    @for (opcion of opciones; track $index) {
+                        <li><a class="dropdown-item" (click)="onSelect(opcion)">{{opcion}}</a></li>
+                    }
+                  
+                </ul>
+            </div>
+          </form>    
+        </div>
+        </div>
+      
+        <div class="sub-view col">
+            
+          <button class="btn btn-secondary">Grabar</button>
+          <button class="btn btn-secondary">Siguiente</button>
+        </div>
+      
+    </div>
+</div>

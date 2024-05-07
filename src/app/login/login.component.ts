@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink,Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -9,10 +9,11 @@ import { RouterLink } from '@angular/router';
 })
 export class LoginComponent {
   
-  constructor(){
+  constructor(private router:Router){
     
   }
   ngSubmit(){
+    this.router.navigate(['/user-view']);
     
   }
 }
