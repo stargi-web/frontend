@@ -1,0 +1,22 @@
+<div class="flex justify-content-end mt-1 mb-3">
+    <div>
+        <label for="stage">Nuevo estado:</label>
+        <p-dropdown id="stage" [(ngModel)]="newStage" optionsLabel="Seleccione un nuevo estado" [options]="stageOptions"/>
+    </div>
+    <div>
+        <label for="comment">Nuevo mensaje:</label>
+        <textarea id="comment" rows="5" cols="30" pInputTextarea [(ngModel)]="newCommentary"></textarea>
+    </div>
+    <div>
+        <label for="expiration">Nueva fecha de expiracion</label>
+        <p-calendar id="expiration" [(ngModel)]="newExpirationAt" appendTo="body"></p-calendar>
+    </div>
+    <div>
+        <label for="close">Nueva fecha de expiracion</label>
+        <p-calendar id="close" [(ngModel)]="newCloseAt" appendTo="body"></p-calendar>
+    </div>
+    <div>
+        <p-button label="Guardar" (onClick)="onSave()"/>
+        <p-button label="Cancelar" (onnClick)="onClose()"/>
+    </div>
+</div>

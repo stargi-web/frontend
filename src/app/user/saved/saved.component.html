@@ -1,30 +1,185 @@
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Acción</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td><button>Eliminar</button></td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td><button>Eliminar</button></td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td >Larry the Bird</td>
-        <td>EOEOEOE</td>
-        <td><button>Eliminar</button></td>
-      </tr>
-    </tbody>
-  </table>
+
+<p-table
+        #dt2
+        [value]="datos"
+        dataKey="id"
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50]"
+        [loading]="loading"
+        [paginator]="true"
+        [globalFilterFields]="['ruc', 'businnessName', 'country']"
+        [tableStyle]="{ 'min-width': '75rem' }"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">
+                        Ruc
+                        <p-columnFilter type="text" field="ruc" display="menu" />
+                    </div>
+                </th>
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">
+                        Razón Social
+                        <p-columnFilter type="text" field="businessName" display="menu" />
+                    </div>
+                </th>
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">
+                        Estado
+                        <p-columnFilter type="text" field="stage" display="menu" />
+                    </div>
+                </th>
+                <th style="min-width:10rem">
+                    <div class="flex align-items-center">
+                        Última Modificación
+                        <p-columnFilter type="date" field="updatedAt" display="menu" />
+                    </div>
+                </th>
+                <th style="min-width:10rem">
+                    <div class="flex align-items-center">
+                        Fecha de expiración
+                        <p-columnFilter type="date" field="expirationAt" display="menu" />
+                    </div>
+                </th>
+                <th style="min-width:10rem">
+                    <div class="flex align-items-center">
+                        Fecha de cierre
+                        <p-columnFilter type="date" field="closeAt" display="menu" />
+                    </div>
+                </th>
+                <th style="min-width:10rem">
+                    Acciones
+                </th>
+            </tr>
+            
+        </ng-template>
+        <ng-template pTemplate="body" let-dato>
+            <tr>
+                <td (click)="showRecord(dato.id)">
+                    {{ dato.ruc }}
+                </td>
+                <td>
+                    {{dato.businessName}}
+                </td>
+                <td>
+                    {{dato.stage}}
+                </td>
+                <td>
+                    {{dato.updatedAt | date:'MM/dd/yyyy'}}
+                </td>
+                <td>
+                    {{dato.expirationAt | date:'MM/dd/yyyy'}}
+                </td>
+                <td>
+                    {{dato.closeAt | date:'MM/dd/yyyy'}}
+                </td>
+                <td>
+                    <div class="card flex justify-content-center">
+                        <p-button label="Modificar" icon="pi pi-cog" (onClick)="editInfo(dato.id,dato.stage,dato.commentary,dato.expirationAt,dato.closeAt)" ></p-button>
+                        <p-button label="Eliminar" icon="pi pi-trash" (onClick)="deleteInfo(dato.id)"></p-button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5">Ninguna información coincide con los filtros</td>
+            </tr>
+        </ng-template>
+</p-table>
+<div class="card flex justify-content-center">
+    
+        <p-dialog header="Añadir registro" [modal]="true" [(visible)]="createInfoDialogDisplay" [style]="{ width: '55rem' }">
+            <span class="p-text-secondary block mb-5">Añade el registro con las siguientes opciones</span>
+            <div class="flex align-items-center gap-3 mb-3">
+                <label for="GerenteVentas" class="font-semibold w-6rem">Gerente de Ventas</label>
+                <p-dropdown 
+                [options]="gerenteVentas" 
+                [(ngModel)]="selectedGerente" 
+                optionLabel="name"
+                placeholder="Selecciona un gerente" />
+            </div>
+            <div class="flex align-items-center gap-3 mb-5">
+                <label for="ejecutivos" class="font-semibold w-6rem">Seleccione un ejecutivo</label>
+                <p-dropdown 
+                [options]="ejecutivos" 
+                [(ngModel)]="selectedEjecutivo" 
+                optionLabel="name"
+                placeholder="Seleccione un ejecutivo" />
+            </div>
+            <div class="flex align-items-center gap-3 mb-5">
+                <label for="etapasVenta" class="font-semibold w-6rem">Seleccione la etapa de la venta</label>
+                <p-dropdown 
+                [options]="etapasVenta" 
+                [(ngModel)]="selectedEtapa" 
+                optionLabel="name"
+                placeholder="Etapas" />
+            </div>
+            
+            <div class="flex justify-content-end gap-2">
+                <label for="comentarios" class="font-semibold w-6rem">Acción o comentario</label>
+
+                <textarea id="comentarios"
+                    rows="5"
+                    cols="30" 
+                pInputTextarea 
+                [(ngModel)]="commentary">
+                </textarea>
+            </div >
+            <div class="flex justify-content-end gap-2">
+                <label for="oppNumber" class="font-semibold w-6rem">Número de OPP</label>
+                <input type="text" pInputText [(ngModel)]="oppNumber" placeholder="Solo deben ser números"/>
+            </div>
+            <div class="flex align-items-center gap-3 mb-5">
+                <label for="fechaVencimiento" class="font-semibold w-6rem">Fecha de vencimiento</label>
+                <p-calendar [(ngModel)]="expirationAt" appendTo="body"/>
+            </div>
+            <div class="flex justify-content-end gap-2">
+                <label for="Razón Social" class="font-semibold w-6rem">Razón Social</label>
+                <input type="text" pInputText [(ngModel)]="businessName" />
+            </div>
+            <div >
+                <label for="RUC" class="font-semibold w-6rem">RUC</label>
+                <input type="text" pInputText [(ngModel)]="ruc" placeholder="Solo deben ser números"/>
+            </div>
+            <div>
+                <label for="product" class="font-semibold w-6rem">Producto</label>
+                <p-multiSelect [options]="opciones" [(ngModel)]="selectedOptions" optionLabel="name" placeholder="Selecciona una opción"/>
+            </div>
+            <div >
+                <label for="units" class="font-semibold w-6rem">Unidades</label>
+                <input type="text" pInputText [(ngModel)]="units" placeholder="Solo deben ser números"/>
+            </div>
+            <div >
+                <label for="realrent" class="font-semibold w-6rem">Renta Real</label>
+                <input type="text" pInputText [(ngModel)]="realRent" placeholder="Solo deben ser números"/>
+            </div>
+            <div class="flex align-items-center gap-3 mb-5">
+                <label for="fechaCierre" class="font-semibold w-6rem">Fecha de cierre</label>
+                <p-calendar [(ngModel)]="closeAt" appendTo="body"/>
+            </div>
+            <div >
+                <label for="contactoEmpresa" class="font-semibold w-6rem">Contacto de la empresa</label>
+                <input type="text" pInputText [(ngModel)]="contact" />
+            </div>
+            <div >
+                <label for="telefonoEmpresa" class="font-semibold w-6rem">Teléfono de contacto de la empresa</label>
+                <input type="text" pInputText [(ngModel)]="contactNumber" placeholder="Solo deben ser números"/>
+            </div>
+            <div >
+                <label for="emailEmpresa" class="font-semibold w-6rem">Email de contacto de la empresa</label>
+                <input type="text" pInputText [(ngModel)]="email" />
+            </div>
+            <div class="flex justify-content-end gap-2">
+                <p-button label="Cancelar" severity="secondary" (click)="createInfoDialogDisplay = false" />
+                <p-button label="Guardar" (click)="saveInfo()" />
+            </div>
+            
+            
+        </p-dialog>
+    
+    
+</div>
+<p-button icon="pi pi-plus" class="fixed-button" (click)="createInfoDialogDisplay=true"/>
+<p-button icon="pi pi-bell" class="fixed-button2" (click)="showNotifications()"/>

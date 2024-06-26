@@ -1,0 +1,8 @@
+<div class="card flex justify-content-center">
+    <p-dropdown 
+        [options]="users" 
+        [(ngModel)]="selectedUser" 
+        optionLabel="firstName"
+        placeholder="Selecciona un líder" />
+    <p-button label="Confirmar" (onClick)="assignLeader()"/>
+</div>

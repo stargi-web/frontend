@@ -1,0 +1,16 @@
+<div class="filters">
+    <p-dropdown 
+      [options]="months" 
+      [(ngModel)]="selectedMonth" 
+      optionLabel="name" 
+      placeholder="Select a Month">
+    </p-dropdown>
+    <button pButton type="button" (click)="generateChart()" label="Generate Chart"></button>
+</div>
+@if (chartData) {
+    <p-chart
+    type="bar"
+    [data]="chartData"
+    [options]="chartOptions"
+    ></p-chart>
+}

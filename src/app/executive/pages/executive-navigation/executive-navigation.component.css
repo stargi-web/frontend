@@ -1,0 +1,30 @@
+.executive-navbar {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.executive-navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.executive-navbar li {
+    display: inline;
+}
+
+.executive-navbar li a {
+    display: block;
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+.executive-navbar li a:hover {
+    background-color: #111;
+}
+
+.executive-navbar li a.active {
+    background-color: #4CAF50;
+}

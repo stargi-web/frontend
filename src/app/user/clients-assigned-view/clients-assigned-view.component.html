@@ -1,0 +1,40 @@
+<p-table
+    [value]="clients"
+    [rows]="10"
+    [loading]="loading"
+    [paginator]="true"
+
+    >
+    <ng-template pTemplate="header">
+        <tr>
+            @for (column of columns; track $index) {
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">
+                        {{column.header}}
+                    </div>
+                </th>
+            }
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-client>
+        <tr>
+            @for (column of columns; track $index) {
+                @if(column.field==='stage'){
+                    <td>{{client[column.field]}}</td>
+                }
+                @else if (column.field==='modify') {
+                    <td><p-button icon="pi pi-plus" (onClick)="modifyClient(client.id)"/></td>
+                }
+                @else if (column.field==='message') {
+                    <td>{{client[column.field]}}</td>
+                }
+                @else {
+                    <td>{{(client.dataInfo[column.field])||''}}</td>
+                }
+                
+            }
+            
+        </tr>
+    </ng-template>
+    
+</p-table>

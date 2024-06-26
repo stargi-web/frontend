@@ -1,16 +1,34 @@
-<div class="d-flex justify-content-center align-items-center min-vh-100">
-    <form (submit)="ngSubmit()" class="border border-dark shadow-lg p-3">
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+<div style="display: flex; justify-content: center; align-items: center;">
+  <form [formGroup]="credentials" (ngSubmit)="ngSubmit()">
+    <p-card header="Iniciar Sesión" [style]="{width:'360px'}">
+      <div class="field">
+        <label for="username">Nombre de Usuario</label>
+        <input type="text"
+        pInputText
+        formControlName="userName"
+        class="w-full"
+        name="username"
+        placeholder="Ingrese su nombre de usuario"
+        />
       </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
+      <div class="field">
+        <label for="password">Contraseña</label>
+        <input type="password"
+        pInputText
+        formControlName="password"
+        class="w-full"
+        name="password"
+        placeholder="Ingrese su contraseña"
+        />
       </div>
-      <div class="mb-3">
-        <label>No tienes una cuenta? <a routerLink="/registro">Regístrate!</a></label>
-      </div>
-      <button type="submit" class="btn btn-secondary" (click)="ngSubmit()">Iniciar sesión</button>
-    </form>
+      <p-button
+      label="Ingresar"
+      styleClass="w-full"
+      type="submit"
+      
+      ></p-button>
+    </p-card>
+  </form>
 </div>
+

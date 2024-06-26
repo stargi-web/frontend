@@ -1,0 +1,22 @@
+<div class="flex justify-content-end mt-1 mb-3">
+    <p-table [value]="notifications" [tableStyle]="{'min-width': '60rem'}" [responsive]="true" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="ruc" style="width: 20%;">
+                    Ruc <p-sortIcon field="ruc"/>
+                </th>
+                <th pSortableColumn="message" style="width: 20%;">
+                    Mensaje <p-sortIcon field="message"/>
+                </th>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-record>
+            <tr>
+                <td>{{record.ruc}}</td>
+                <td>{{record.message}}</td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

@@ -1,0 +1,86 @@
+@if (isLeader) {
+<p-table
+    [value]="infos"
+    dataKey="id"
+    [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50]"
+        [loading]="loading"
+        [paginator]="true"
+        [globalFilterFields]="['ruc', 'businnessName', 'country']"
+        [tableStyle]="{ 'min-width': '75rem' }"
+    >
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="min-width:15rem">
+                <div class="flex align-items-center">
+                    Ruc
+                    <p-columnFilter type="text" field="ruc" display="menu" />
+                </div>
+            </th>
+            <th style="min-width:15rem">
+                <div class="flex align-items-center">
+                    Razón Social
+                    <p-columnFilter type="text" field="businessName" display="menu" />
+                </div>
+            </th>
+            <th style="min-width:15rem">
+                <div class="flex align-items-center">
+                    Estado
+                    <p-columnFilter type="text" field="stage" display="menu" />
+                </div>
+            </th>
+            <th style="min-width:10rem">
+                <div class="flex align-items-center">
+                    Última Modificación
+                    <p-columnFilter type="date" field="updatedAt" display="menu" />
+                </div>
+            </th>
+            <th style="min-width:10rem">
+                <div class="flex align-items-center">
+                    Fecha de expiración
+                    <p-columnFilter type="date" field="expirationAt" display="menu" />
+                </div>
+            </th>
+            <th style="min-width:10rem">
+                <div class="flex align-items-center">
+                    Fecha de cierre
+                    <p-columnFilter type="date" field="closeAt" display="menu" />
+                </div>
+            </th>
+           
+        </tr>
+        
+    </ng-template>
+    <ng-template pTemplate="body" let-dato>
+        <tr>
+            <td (click)="showRecord(dato.id)">
+                {{ dato.ruc }}
+            </td>
+            <td>
+                {{dato.businessName}}
+            </td>
+            <td>
+                {{dato.stage}}
+            </td>
+            <td>
+                {{dato.updatedAt | date:'MM/dd/yyyy'}}
+            </td>
+            <td>
+                {{dato.expirationAt | date:'MM/dd/yyyy'}}
+            </td>
+            <td>
+                {{dato.closeAt | date:'MM/dd/yyyy'}}
+            </td>
+            
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="5">Ninguna información coincide con los filtros</td>
+        </tr>
+    </ng-template>
+</p-table>
+}
+@else {
+    <p>No está asignado a un equipo, consulte con el Gerente</p>
+}

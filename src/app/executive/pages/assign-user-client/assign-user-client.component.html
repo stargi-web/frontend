@@ -1,0 +1,14 @@
+<div class="card flex justify-content-center">
+    <label for="selectUser">Seleccione</label>
+    <p-dropdown 
+    id="selectUser"
+        [options]="teamMembers" 
+        [(ngModel)]="selectedMember" 
+        optionLabel="firstName"
+        placeholder="Seleccione un usuario" />
+        <p-button 
+        label="Search" 
+        icon="pi pi-check" 
+         
+        (onClick)="assignUserToClient()" />
+</div>

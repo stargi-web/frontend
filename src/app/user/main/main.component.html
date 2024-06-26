@@ -1,5 +1,5 @@
 
-<div class="container main-view">
+<!--<div class="container main-view">
     <div class="row">
         
         <div class="sub-view col">
@@ -12,11 +12,12 @@
       
         <div class="col">
         <div class="sub-view">
-          <form>
-            <div class="form-group"><textarea class="form-control" rows="4"></textarea></div>
+          <form [formGroup]="infoToSend">
+            <div class="form-group"><textarea formControlName="ruc" class="form-control" rows="4"></textarea></div>
             
-            <div class="form-group"><textarea class="form-control" rows="4"></textarea></div>
+            <div class="form-group"><textarea formControlName="businessName" class="form-control" rows="4"></textarea></div>
             
+
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{selected || 'Seleccionar'}}
@@ -34,9 +35,38 @@
       
         <div class="sub-view col">
             
-          <button class="btn btn-secondary">Grabar</button>
-          <button class="btn btn-secondary">Siguiente</button>
+          <button class="btn btn-secondary" (click)="ngSubmit()">Grabar</button>
+          <button class="btn btn-secondary"><a routerLink="/user-saved">Siguiente</a></button>
         </div>
       
     </div>
+</div>
+-->
+<div class="container">
+
+  <form [formGroup]="infoToSend">
+    <div class="mb-3 mt-3">
+      <label for="comment">RUC:</label>
+      <textarea class="form-control" rows="5" formControlName="ruc" id="comment" name="text"></textarea>
+    </div>
+    <div class="mb-3 mt-3">
+      <label for="comment">Razón social:</label>
+      <textarea class="form-control" rows="5" formControlName="businessName" id="comment" name="text"></textarea>
+    </div>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {{selected || 'Seleccionar'}}
+      </button>
+      <ul class="dropdown-menu">
+            @for (opcion of opciones; track $index) {
+                <li><a class="dropdown-item" (click)="onSelect(opcion)">{{opcion}}</a></li>
+            }
+          
+        </ul>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="ngSubmit()">Submit</button>
+    
+  </form>
+  <button class="btn btn-secondary"><a routerLink="/user-saved">Siguiente</a></button>
+
 </div>

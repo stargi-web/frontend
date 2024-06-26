@@ -1,0 +1,10 @@
+<div class="card flex justify-content-center">
+    
+    @for (collection of collections; track collection.collectionId) {
+        <p-card header={{collection.collectionName}} (click)="redirectToClientsAssigned(collection.collectionId)">
+            <p class="m-0">
+                Grupo asignado por líder de tu equipo
+            </p>
+        </p-card>
+    }
+</div>

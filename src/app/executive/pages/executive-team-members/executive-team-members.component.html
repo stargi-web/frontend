@@ -1,0 +1,41 @@
+@if(isLeader){
+    <div>
+        <p-table
+        [value]="members"
+        [rows]="10"
+        [loading]="loading"
+        [paginator]="true"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="min-width:15rem">
+                        Nombre
+                    </th>
+                    <th style="min-width:15rem">
+                        Apellido
+                    </th>
+                    <th style="min-width:15rem">
+                        Nombre de Usuario
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-member>
+                <tr>
+                    <td>
+                        {{member.firstName}}
+                    </td>
+                    <td>
+                        {{member.lastName}}
+                    </td>
+                    <td>
+                        {{member.userName}}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <p-button icon="pi pi-plus" class="floating-button" (onClick)="createMemberDialog()"/>
+    </div>
+}
+@else {
+    <p>No está asignado a un equipo, consulte con el Gerente</p>
+}

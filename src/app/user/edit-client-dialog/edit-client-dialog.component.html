@@ -1,0 +1,24 @@
+<div class="flex justify-content-end mt-1 mb-3">
+    <div class="p-field">
+        <label for="stage">Estado</label>
+        <p-dropdown
+        id="stage"
+        [options]="stages"
+        [(ngModel)]="selectedStage"
+        optionLabel="name"
+        placeholder="Seleccione un nuevo estado"/>
+    </div>
+    <div class="p-field">
+        <label for="message">Nuevo comentario</label>
+        <textarea
+            rows="5"
+            cols="30"
+            pInputTextarea
+            [(ngModel)]="newMessage"
+        ></textarea>
+    </div>
+    <div class="p-field">
+        <p-button label="Confirmar" (onClick)="editClient()"/>
+    </div>
+    
+</div>

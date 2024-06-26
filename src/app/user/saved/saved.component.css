@@ -1,0 +1,12 @@
+.fixed-button{
+    position: fixed;
+    bottom: 20px; 
+    right: 20px; 
+    z-index: 1000;
+}
+.fixed-button2{
+    position: fixed;
+    bottom: 70px; 
+    right: 20px; 
+    z-index: 1000;
+}

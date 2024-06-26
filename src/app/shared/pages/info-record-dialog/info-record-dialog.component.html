@@ -1,0 +1,24 @@
+<div class="flex justify-content-end mt-1 mb-3">
+    <p-table [value]="records" [tableStyle]="{'min-width': '60rem'}" [responsive]="true" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="createdAt" style="width: 20%;">
+                    Fecha de Creación <p-sortIcon field="createdAt"/>
+                </th>
+                <th pSortableColumn="stage" style="width: 20%;">
+                    Fase <p-sortIcon field="stage"/>
+                </th>
+                <th pSortableColumn="commentary" style="width: 40%;">
+                    Comentario <p-sortIcon field="commentary"/>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-record>
+            <tr>
+                <td>{{record.createdAt | date:'MM/dd/yyyy'}}</td>
+                <td>{{record.stage}}</td>
+                <td>{{record.commentary}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

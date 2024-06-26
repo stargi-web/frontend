@@ -1,0 +1,36 @@
+<p-card header="User Form">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="userName">Username</label>
+          <input id="userName" type="text" pInputText formControlName="userName" />
+        </div>
+        <div class="p-field">
+          <label for="password">Password</label>
+          <p-password formControlName="password" id="password"/>
+        </div>
+        <div class="p-field">
+          <label for="firstName">First Name</label>
+          <input id="firstName" type="text" pInputText formControlName="firstName" />
+        </div>
+        <div class="p-field">
+          <label for="lastName">Last Name</label>
+          <input id="lastName" type="text" pInputText formControlName="lastName" />
+        </div>
+        <div class="p-field">
+          <label for="birthDate">Birth Date</label>
+          <p-calendar id="birthDate" formControlName="birthDate" dateFormat="yy-mm-dd"></p-calendar>
+        </div>
+        <div class="p-field">
+            <label for="roles">Roles</label>
+            <p-dropdown [options]="rolesOptions"
+            formControlName="name"
+            placeholder="Seleccione un rol"/>
+        </div>
+        <div class="p-field">
+          <button pButton type="submit" label="Submit"></button>
+        </div>
+      </div>
+    </form>
+  </p-card>
+  
