@@ -5,7 +5,7 @@ import { Observable, catchError, tap, throwError } from "rxjs";
     providedIn:'root',
 })
 export class ClientService{
-    private baseUrl='http://localhost:8080/api/v1/client';
+    private baseUrl='https://stargibackend.uc.r.appspot.com/api/v1/client';
 
     constructor(private http:HttpClient){
       

@@ -8,7 +8,7 @@ import { response } from "express";
     providedIn:'root',
 })
 export class UserService{
-    private baseUrl='http://localhost:8080/api/v1/user';
+    private baseUrl='https://stargibackend.uc.r.appspot.com/api/v1/user';
     constructor(private http:HttpClient){
       
     }

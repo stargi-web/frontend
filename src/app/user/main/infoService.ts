@@ -10,7 +10,7 @@ import { EditInfoModel } from "../model/EditInfoModel";
     providedIn:'root',
 })
 export class InfoService{
-    private baseUrl = 'http://localhost:8080/api/v1/info';
+    private baseUrl = 'https://stargibackend.uc.r.appspot.com/api/v1/info';
     constructor(private http:HttpClient){}
 
     createInfo(body:CreateInfoModel):Observable<any>{

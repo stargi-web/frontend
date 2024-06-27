@@ -5,7 +5,7 @@ import { Observable, catchError, pipe, tap, throwError } from "rxjs";
     providedIn:'root',
 })
 export class InfoRecordService{
-    private baseUrl='http://localhost:8080/api/v1/infoRecord';
+    private baseUrl='https://stargibackend.uc.r.appspot.com/api/v1/infoRecord';
 
     constructor(private http:HttpClient){
       

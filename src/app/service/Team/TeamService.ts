@@ -6,7 +6,7 @@ import { Observable, catchError, pipe, tap, throwError } from "rxjs";
     providedIn:'root',
 })
 export class TeamService{
-    private baseUrl='http://localhost:8080/api/v1/group';
+    private baseUrl='https://stargibackend.uc.r.appspot.com/api/v1/group';
     constructor(private http:HttpClient){}
     
     createGroup(name:string):Observable<any>{

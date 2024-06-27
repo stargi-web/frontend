@@ -17,7 +17,7 @@ export class AuthService{
     }
 
     createUser(body:CreateUserModel):Observable<any>{
-      return this.http.post(`http://localhost:8080/api/v1/auth/signUp`,body)
+      return this.http.post(`https://stargibackend.uc.r.appspot.com/api/v1/auth/signUp`,body)
       .pipe(tap((userData)=>{
         console.log("Creado exitosamente");
         })
@@ -26,7 +26,7 @@ export class AuthService{
     }
 
     logIn(credentials:logInUser):Observable<any>{
-        return this.http.post<any>('http://localhost:8080/api/v1/auth/signIn',credentials)
+        return this.http.post<any>('https://stargibackend.uc.r.appspot.com/api/v1/auth/signIn',credentials)
         .pipe(tap((userData)=>{
             console.log(userData);
             sessionStorage.setItem("token",userData.token);
