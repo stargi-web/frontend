@@ -31,6 +31,7 @@ export class TeamClientsComponent implements OnInit {
   haveClients!:boolean;
   columns: any[] = [];
   uploadedFiles:any[]=[];
+  disableButton:boolean=false;
   constructor(public dialogService:DialogService,private route: ActivatedRoute,private clientService:ClientService,private clientCollectionService:ClientCollectionService){}
   ref:DynamicDialogRef|undefined;
   ngOnInit(): void {
@@ -91,9 +92,11 @@ export class TeamClientsComponent implements OnInit {
     const file: File = event.target.files[0];
     if (file) {
       this.uploadFile(file);
+      
     }
   }
   uploadFile(file:File){
+    this.disableButton=true;
     this.clientService.createClients(file,this.collectionId).subscribe(
       {
         next: (response) => {

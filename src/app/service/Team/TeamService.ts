@@ -40,7 +40,7 @@ export class TeamService{
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         })
-        return this.http.put(`${this.baseUrl}/${leaderId}/leader/${teamId}/group`,{headers}).pipe(
+        return this.http.put(`${this.baseUrl}/${leaderId}/leader/${teamId}/group`,null,{headers}).pipe(
             tap((response)=>{
 
             }),catchError(this.handleError)

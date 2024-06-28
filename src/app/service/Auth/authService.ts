@@ -45,6 +45,7 @@ export class AuthService{
     }
     logout():void{
         sessionStorage.removeItem("token");
+        sessionStorage.removeItem("userId");
     }
       decodeToken(token: string) {
         try {

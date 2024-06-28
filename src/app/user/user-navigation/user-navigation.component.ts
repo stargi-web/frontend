@@ -8,5 +8,11 @@ import { RouterModule,Router } from '@angular/router';
   styleUrl: './user-navigation.component.css'
 })
 export class UserNavigationComponent {
+  constructor(private router:Router){}
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    this.router.navigate(['/login']);
+  }
 
 }

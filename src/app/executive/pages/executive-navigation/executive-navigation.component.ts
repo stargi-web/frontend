@@ -14,4 +14,9 @@ export class ExecutiveNavigationComponent implements OnInit {
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    this.router.navigate(['/login']);
+  }
 }

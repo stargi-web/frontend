@@ -15,6 +15,7 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit{
+  disableButton:boolean=false;
   credentials=this.formBuilder.group({
     userName:['',[Validators.required,Validators.email]],
     password:['',Validators.required]
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit{
     
   }
   ngSubmit(){
+    this.disableButton=true;
     this.authService.logIn(this.credentials.value as logInUser)
     .subscribe({
       next:(userData)=>{

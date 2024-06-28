@@ -39,7 +39,9 @@ export class AssignLeaderDialogComponent implements OnInit {
           next:response=>{
             this.ref.close(true);
           },
-          error:error=>{console.error(error)}
+          error:error=>{console.error(error);
+            this.ref.close(false);
+          }
 
         }
       )
