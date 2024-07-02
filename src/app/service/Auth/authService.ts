@@ -34,6 +34,12 @@ export class AuthService{
             console.log("Exitoso, token: "+userData.token);
         }),catchError(this.handleError))
     }
+    isLogged(){
+      if(sessionStorage.getItem('token')){
+        return true;
+      }
+      return false;
+    }
     private handleError(error:HttpErrorResponse){
         if(error.status===0){
           console.error('Se ha producio un error ', error.error);
@@ -62,6 +68,7 @@ export class AuthService{
         if (token) {
           const decodedToken: any = this.decodeToken(token);
           const roles = decodedToken?.roles || [];
+          sessionStorage.setItem('roles',roles);
     
           if (roles.includes('ADMIN')) {
             this.router.navigate(['/admin']);

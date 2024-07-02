@@ -24,6 +24,9 @@ export class LoginComponent implements OnInit{
     
   }
   ngOnInit(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('roles');
     
   }
   ngSubmit(){
@@ -36,6 +39,7 @@ export class LoginComponent implements OnInit{
       },
       error:(errorData)=>{
         console.error(errorData);
+        this.disableButton=false;
       }
     }
     )

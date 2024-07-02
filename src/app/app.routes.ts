@@ -16,6 +16,8 @@ import { ExecutiveTeamMembersComponent } from './executive/pages/executive-team-
 import { UserNavigationComponent } from './user/user-navigation/user-navigation.component';
 import { CollectionsViewComponent } from './user/collections-view/collections-view.component';
 import { ClientsAssignedViewComponent } from './user/clients-assigned-view/clients-assigned-view.component';
+import { authGuardGuard } from './guard/auth-guard.guard';
+import { hasRoleGuard } from './guard/has-role.guard';
 export const routes: Routes = [
     {path:'',redirectTo:'/login',pathMatch:'full'},
     {path:'login',component:LoginComponent},
@@ -23,32 +25,38 @@ export const routes: Routes = [
     {
         path: 'admin',
         component: AdminNavigationComponent,
+        canActivate:[authGuardGuard,hasRoleGuard],
+        data:{allowedRoles:['ADMIN']},
         children: [
-          { path: 'create-user', component: CreateUserComponent },
-          { path: 'teams-view', component: TeamsViewComponent },
-          { path: 'dashboard', component: DashboardAdminComponent },
-          { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+          { path: 'create-user', data:{allowedRoles:['ADMIN']},component: CreateUserComponent },
+          { path: 'teams-view',  data:{allowedRoles:['ADMIN']},component: TeamsViewComponent },
+          { path: 'dashboard', data:{allowedRoles:['ADMIN']},component: DashboardAdminComponent },
+          { path: '', redirectTo: 'dashboard', data:{allowedRoles:['ADMIN']},pathMatch: 'full' },
         ],
     },
     {
       path:'executive',
       component: ExecutiveNavigationComponent,
+      canActivate:[authGuardGuard,hasRoleGuard],
+      data:{allowedRoles:['EXECUTIVE']},
       children:[
-        {path:'dashboard',component:ExecutiveDashboardComponent},
-        {path:'team-members',component:ExecutiveTeamMembersComponent},
-        {path:'collections',component:CollectionsView},
-        {path:'collections/:collectionId',component:TeamClientsComponent},
-        {path:'',redirectTo:'dashboard',pathMatch:'full'}
+        {path:'dashboard',data:{allowedRoles:['EXECUTIVE']},component:ExecutiveDashboardComponent},
+        {path:'team-members',data:{allowedRoles:['EXECUTIVE']},component:ExecutiveTeamMembersComponent},
+        {path:'collections',data:{allowedRoles:['EXECUTIVE']},component:CollectionsView},
+        {path:'collections/:collectionId',data:{allowedRoles:['EXECUTIVE']},component:TeamClientsComponent},
+        {path:'',redirectTo:'dashboard',data:{allowedRoles:['EXECUTIVE']},pathMatch:'full'}
       ]
     },
     {
       path: 'user',
       component: UserNavigationComponent,
+      data:{allowedRoles:['USER']},
+      canActivate:[authGuardGuard,hasRoleGuard],
       children: [
-        { path: '', redirectTo: 'saved', pathMatch: 'full' },
-        { path: 'saved', component: SavedComponent },
-        { path: 'collections', component: CollectionsViewComponent },
-        {path:'collections/:collectionId',component:ClientsAssignedViewComponent}
+        { path: '', redirectTo: 'saved', data:{allowedRoles:['USER']},pathMatch: 'full' },
+        { path: 'saved', data:{allowedRoles:['USER']},component: SavedComponent },
+        { path: 'collections', data:{allowedRoles:['USER']},component: CollectionsViewComponent },
+        {path:'collections/:collectionId',data:{allowedRoles:['USER']},component:ClientsAssignedViewComponent}
       ]
     },
 ];

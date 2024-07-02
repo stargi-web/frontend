@@ -1,8 +1,14 @@
-<nav class="executive-navbar">
-    <ul>
-        <li><a routerLink="/executive/dashboard" routerLinkActive="active">Dashboard</a></li>
-        <li><a routerLink="/executive/team-members" routerLinkActive="active">Team Members</a></li>
-        <li><a routerLink="/executive/collections" routerLinkActive="active">Collections</a></li>
-    </ul>
-</nav>
+<p-menubar [model]="items">
+  <ng-template pTemplate="item" let-item>
+    @if(item.route){
+      
+      <a [routerLink]="item.route" class="p-menuitem-link" >
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{item.label}}</span>
+      </a>
+      
+    }
+    
+  </ng-template>
+</p-menubar>
 <router-outlet></router-outlet>

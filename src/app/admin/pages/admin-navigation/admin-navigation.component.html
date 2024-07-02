@@ -1,14 +1,14 @@
-<nav>
-    <ul>
+<p-menubar [model]="items">
+  <ng-template pTemplate="item" let-item>
+    @if(item.route){
       
-      <li><a routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</a></li>
-      <li><a routerLink="/admin/create-user" routerLinkActive="active">Create User</a></li>
-      <li><a routerLink="/admin/teams-view" routerLinkActive="active">Teams View</a></li>
-      <li>
-        <button (click)="logout()" style="border: none; background: none; cursor: pointer;">
-          Cerrar sesión
-        </button>
-      </li>
-    </ul>
-  </nav>
+      <a [routerLink]="item.route" class="p-menuitem-link" >
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{item.label}}</span>
+      </a>
+      
+    }
+    
+  </ng-template>
+</p-menubar>
   <router-outlet></router-outlet>
